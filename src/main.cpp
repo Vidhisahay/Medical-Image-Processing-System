@@ -27,37 +27,44 @@ int main() {
             continue;
         }
 
-        // ---- Preprocessing ----
+        // ---------- PREPROCESSING ----------
         auto start_pre = high_resolution_clock::now();
 
         cv::Mat gray = convertToGray(image);
+
         cv::Mat blurred = applyGaussianBlur(gray);
 
+        cv::Mat enhanced = enhanceContrast(blurred);
+
         auto end_pre = high_resolution_clock::now();
+
         std::cout << "Preprocessing time: "
                   << duration_cast<milliseconds>(end_pre - start_pre).count()
                   << " ms\n";
 
-        // ---- Edge detection ----
+        // ---------- EDGE DETECTION ----------
         auto start_edge = high_resolution_clock::now();
 
-        cv::Mat edges = detectEdges(blurred);
+        cv::Mat edges = detectEdges(enhanced);
 
         auto end_edge = high_resolution_clock::now();
+
         std::cout << "Edge detection time: "
                   << duration_cast<milliseconds>(end_edge - start_edge).count()
                   << " ms\n";
 
-        // ---- Region detection ----
+        // ---------- REGION DETECTION ----------
         auto start_region = high_resolution_clock::now();
 
         cv::Mat result = detectRegions(image, edges);
 
         auto end_region = high_resolution_clock::now();
+
         std::cout << "Region detection time: "
                   << duration_cast<milliseconds>(end_region - start_region).count()
                   << " ms\n";
 
+        // ---------- SAVE RESULT ----------
         std::string outputPath =
             "results/processed_" + entry.path().filename().string();
 
