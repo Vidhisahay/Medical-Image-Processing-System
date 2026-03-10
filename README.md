@@ -11,6 +11,15 @@ The goal of the project is to demonstrate how **classical computer vision algori
 
 The system is built to showcase **modern C++ system design principles**, including modular architecture, batch image processing pipelines, performance measurement, and integration of external libraries such as OpenCV.
 
+## Example Input and Output
+
+The following example demonstrates how the system processes a medical scan and highlights detected regions.
+
+![Example Processing Result](docs/example-output.png)
+
+Left: Original medical scan  
+Right: Processed image with detected regions highlighted using bounding boxes.
+
 
 ## Features
 
