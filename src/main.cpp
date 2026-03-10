@@ -3,6 +3,7 @@
 
 #include "preprocessing.h"
 #include "edge_detection.h"
+#include "region_detection.h"
 
 int main() {
 
@@ -24,9 +25,12 @@ int main() {
     // Edge detection
     cv::Mat edges = detectEdges(blurred);
 
-    cv::imwrite("results/edges_modular.png", edges);
+    // Region detection
+    cv::Mat result = detectRegions(image, edges);
 
-    std::cout << "Edge detection complete\n";
+    cv::imwrite("results/final_detection_modular.png", result);
+
+    std::cout << "Region detection complete\n";
 
     return 0;
 }
